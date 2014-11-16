@@ -5,9 +5,11 @@
 
 /**Initialization of the SPI for display*/
 void spiInit(){
-	DDRB |= (1<<PB2) | (1<<PB3) | (1<<PB5);	// SS as output! + MOSI + SCK
-	SPCR = (1<<SPE) | (1<<MSTR) | (1<<CPOL) | (1<<CPHA) | (1<<SPR1);
+	DDRB |= (1<<PB3) | (1<<PB5);	// MOSI + SCK as Outputs
+	SPCR  = (1<<SPE) | (1<<MSTR) | (1<<CPOL) | (1<<CPHA) | (1<<SPR1);
 	SPSR |= (1<<SPI2X);
+	DISPLAY_RS_DDR 	|= 1<<DISPLAY_RS_PIN;
+	DISPLAY_CSB_DDR |= 1<<DISPLAY_CSB_PIN;
 }
 
 /**write data over spi*/

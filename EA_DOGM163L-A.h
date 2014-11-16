@@ -12,23 +12,23 @@
 #include<avr/interrupt.h>
 
 
-//register adresses of FCM8201
-#define DISPLAY_RS_low  (PORTB &= ~ (1<<PB0))
-#define DISPLAY_RS_high (PORTB |= (1<<PB0))
-#define DISPLAY_CSB_low  (PORTB &= ~ (1<<PB2))
-#define DISPLAY_CSB_high (PORTB |= (1<<PB2))
+#define DISPLAY_RS_low   (DISPLAY_RS_PORT &= ~(1<<DISPLAY_RS_PIN))
+#define DISPLAY_RS_high  (DISPLAY_RS_PORT |= (1<<DISPLAY_RS_PIN))
 
-void spiInit();
+#define DISPLAY_CSB_low  (DISPLAY_CSB_PORT &= ~(1<<DISPLAY_CSB_PIN))
+#define DISPLAY_CSB_high (DISPLAY_CSB_PORT |= (1<<DISPLAY_CSB_PIN))
+
+void spiInit(void);
 void spi_write_instruction (char instruction);
 void spi_write_char(char data);
 void spi_write_string(char *string);
 void display_set_row(uint8_t row);
-void display_clear();
-void display_return_home();
+void display_clear(void);
+void display_return_home(void);
 void display_contrast(uint8_t contrast);
-void DOGM163_init();
+void DOGM163_init(void);
 
-/*Note: MOSI and SCK and SS are automatically set as output by init funktion */
+/*Note: MOSI, SCK,SS and RS are automatically set as output by init funktion */
 
 
 //first call spiInit();
