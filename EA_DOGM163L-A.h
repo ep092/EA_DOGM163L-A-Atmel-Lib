@@ -12,7 +12,6 @@
 #include<avr/interrupt.h>
 
 
-//register adresses of FCM8201
 #define DISPLAY_RS_low  (PORTB &= ~ (1<<PB0))
 #define DISPLAY_RS_high (PORTB |= (1<<PB0))
 #define DISPLAY_CSB_low  (PORTB &= ~ (1<<PB2))
