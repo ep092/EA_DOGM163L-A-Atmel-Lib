@@ -48,6 +48,14 @@ void spi_write_string(char *string){
 	}
 }
 
+// schreibt einen Pstring, also einen String direkt aus dem ROM aufs LCD
+void spi_write_pstr(PGM_P str) {
+	while (pgm_read_byte(str) != 0) {
+		spi_write_char(pgm_read_byte(str));
+		str++;
+	}
+}
+
 //not ready
 void display_set_row(uint8_t row){
 	if(row==0){
